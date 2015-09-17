@@ -1,0 +1,40 @@
+name: "GameCoreFramework"
+author: Khinenw
+version: 0.0.1 alpha
+description: "An minigame framework for GameCore."
+main: gamecore\gcframework\GCFramework
+api: 1.12.0
+depend: [CustomPacket]
+
+permissions:
+  gcf.*:
+    description: "The permission for using gamecore framework features."
+    default: true
+    children:
+      gcf.rank:
+        description: "The permission for viewing ranking."
+        default: true
+
+      gcf.desc:
+        description: "The permission for viewing game descriptions."
+        default: true
+
+      gcf.grank:
+        description: "The permission for viewing game rankings."
+        default: true
+
+commands:
+  rank:
+    description: "Shows whole ranking."
+    usage: "/rank [Page]"
+    permission: gcf.rank
+
+  grank:
+    description: "Shows game ranking."
+    usage: "/rank [Game Name] [Page]"
+    permission: gcf.grank
+
+  desc:
+    description: "Shows game decription."
+    usage: "/desc [Game Name]"
+    permission: gcf.desc
