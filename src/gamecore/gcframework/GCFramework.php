@@ -4,15 +4,16 @@ namespace gamecore\gcframework;
 
 use ifteam\CustomPacket\CPAPI;
 use ifteam\CustomPacket\DataPacket;
+use Khinenw\XcelUpdater\UpdatePlugin;
+use Khinenw\XcelUpdater\XcelUpdater;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
-use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
-class GCFramework extends PluginBase implements Listener{
+class GCFramework extends UpdatePlugin implements Listener{
 
 	const PACKET_TYPE_GAME_FINISH = 0;
 	const PACKET_TYPE_GET_DESCRIPTION = 1;
@@ -33,6 +34,7 @@ class GCFramework extends PluginBase implements Listener{
 
 	public function onEnable(){
 		self::$instance = $this;
+		XcelUpdater::chkUpdate($this);
 		$this->getLogger()->info(TextFormat::BLUE."GameCore gaming framework main loaded.");
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 	}
@@ -120,5 +122,13 @@ class GCFramework extends PluginBase implements Listener{
 
 	public static function isFrameworkAttatched(){
 		return (self::getFramework() !== null);
+	}
+
+	public function compVersion($pluginVersion, $repoVersion){
+		return $pluginVersion !== $repoVersion;
+	}
+
+	public function getPluginYamlURL(){
+		return "https://raw.githubusercontent.com/HelloWorld017/GameCoreFramework/master/plugin.yml";
 	}
 }

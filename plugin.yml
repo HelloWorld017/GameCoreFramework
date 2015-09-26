@@ -4,7 +4,7 @@ version: 0.0.1 alpha
 description: "An minigame framework for GameCore."
 main: gamecore\gcframework\GCFramework
 api: 1.12.0
-depend: [CustomPacket]
+depend: [CustomPacket, XcelUpdater, EconomyAPI]
 
 permissions:
   gcf.*:
